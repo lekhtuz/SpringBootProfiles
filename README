@@ -1,0 +1,35 @@
+export baseurl=http://localhost:8080
+
+curl -v -H 'Accept: application/json' $baseurl
+
+curl -v $baseurl/profiles/appTableEntities
+
+curl -v $baseurl/appTableEntities
+
+curl -v -H 'Content-Type: application/json' -d '{ "id": 100, "name": "NAME100", "description": "DESCRIPTION100" }' $baseurl/appTableEntities
+
+curl -v $baseurl
+
+curl -v $baseurl
+
+mvn help:active-profiles -P <profilename>
+
+mvn clean package -P h2
+mvn clean spring-boot:run -P h2
+mvn clean package -P h2 && java -jar target/profiles-0.0.1-SNAPSHOT.jar --spring.profiles.active=h2
+
+mvn clean package -P mysql
+mvn clean spring-boot:run -P mysql
+mvn clean package -P mysql && java -jar target/profiles-0.0.1-SNAPSHOT.jar --spring.profiles.active=mysql
+
+Extra options:
+-Dmaven.test.skip=true
+-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8008,suspend=n 
+--debug
+
+
+java -jar target/profiles-0.0.1-SNAPSHOT.jar --debug
+
+jar tvf target/profiles-0.0.1-SNAPSHOT.jar | grep devtools
+
+

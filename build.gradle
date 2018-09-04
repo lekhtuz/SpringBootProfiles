@@ -1,0 +1,32 @@
+plugins {
+	id 'org.springframework.boot' version '2.0.4.RELEASE'
+	id 'java'
+}
+
+group = 'com.dmitry'
+version = '0.0.1-SNAPSHOT'
+
+description = "Profiles"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web') {
+		exclude(module: 'spring-boot-starter-logging')
+    }
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compileOnly('org.springframework.boot:spring-boot-starter-devtools')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('com.h2database:h2')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

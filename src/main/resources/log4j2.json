@@ -1,0 +1,53 @@
+{
+	"configuration": {
+		"name": "Default",
+		"appenders": {
+			"RollingFile": {
+				"name": "RollingFile",
+				"fileName": "/tmp/profiles-rolling.log",
+				"filePattern": "/tmp/profiles-rolling-%d{MM-dd-yy-HH-mm-ss}-%i.log.gz",
+				"PatternLayout": {
+					"pattern": "%d{dd HH:mm:ss,SSS} %-5level %logger{1.} - %msg%n"
+				},
+				"Policies": {
+					"SizeBasedTriggeringPolicy": { "size": "20 MB" }
+				},
+				"DefaultRolloverStrategy": { "max": "10" }
+			},
+			"File": {
+				"name": "File",
+				"fileName": "/tmp/profiles.log",
+				"append": false,
+				"PatternLayout": {
+					"pattern": "%d{dd HH:mm:ss,SSS} %-5level %logger{1.} - %msg%n"
+				}
+			},
+			"Console": {
+				"name": "STDOUT",
+				"PatternLayout": {
+					"pattern": "%d{dd HH:mm:ss,SSS} %-5level %logger{1.} - %msg%n"
+				}
+			}
+		},
+		"loggers": {
+			"root": {
+				"level": "info",
+				"AppenderRef": [{ "ref": "STDOUT" }, { "ref": "File" }]
+			},
+			"logger": [
+				{
+					"name": "org.springframework",
+					"level": "info",
+					"additivity": false,
+					"appender-ref": [{ "ref": "STDOUT" }, { "ref": "File" }]
+				},
+				{
+					"name": "org.springframework.jdbc",
+					"level": "debug",
+					"additivity": false,
+					"appender-ref": [{ "ref": "STDOUT" }, { "ref": "File" }]
+				}		
+			]
+		}
+	}
+}
