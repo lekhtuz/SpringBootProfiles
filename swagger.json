@@ -1,0 +1,69 @@
+{
+	"swagger" : "2.0"
+	, "info" : { "version" : "1.0.0" }
+	, "schemes" : [ "http" ]
+	, "host" : "localhost:8080"
+	, "consumes" : "application/json"
+	, "produces" : "application/json"
+	, "tags" : [
+	]
+	, "paths" : {
+		"/accounts/{id}" : {
+			"post" : {
+				"operationId" : "accountsIdPost"
+				, "parameters" : [
+					{
+						"in" : "path"
+						, "name" : "id"
+						, "type" : "integer"
+						, "minimum" : 1
+						, "required" : "true"
+					}
+					, {
+						"in" : "body"
+						, "name" : "account"
+						, "schema" : {
+							"$ref" : "#/definitions/Account"
+						}
+						, "required" : "true"
+					}
+				]
+			}
+			, "get" : {
+				"operationId" : "accountsIdGet"
+				, "responses" : {
+					"200" : {
+						"description" : "OK"
+						, "schema" : {
+							"$ref" : "#/definitions/Account"
+						}
+					}
+				}
+			}
+		}
+		, "/accounts" : {
+			"get" : {
+				"operationId" : "accountsGet"
+				, "responses" : {
+					"200" : {
+						"description" : "OK"
+					}
+				}
+			}
+		}
+	}
+	, "definitions" : {
+		"Account" : {
+			"type" : "object"
+			, "name" : "Account"
+			, "properties" : {
+				"title" : { 
+					"type" : "string"
+				}
+				, "accountType" : { 
+					"enum" : [ "checking", "creditcard" ]
+				}
+			}
+		}
+	}
+}

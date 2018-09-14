@@ -30,6 +30,12 @@ public class AuditAspect {
 		final String _M = "auditMethod(): ";
 		
 		LOG.info("{} called. joinPoint = {}, auditable.value() = {}", _M, joinPoint, auditable.value());
+		LOG.info("{} called. joinPoint.getTarget() = {}", _M, joinPoint.getTarget());
+		LOG.info("{} called. joinPoint.getThis() = {}", _M, joinPoint.getThis());
+		LOG.info("{} called. joinPoint.getKind() = {}", _M, joinPoint.getKind());
+		LOG.info("{} called. joinPoint.toLongString() = {}", _M, joinPoint.toLongString());
+		LOG.info("{} called. joinPoint.toShortString() = {}", _M, joinPoint.toShortString());
+		LOG.info("{} called. joinPoint.getSignature() = {}", _M, joinPoint.getSignature());
 		
 		Logger log =  LogManager.getLogger(auditable.log());
 		log.info("{}: started", auditable.value());
