@@ -11,13 +11,15 @@
 		"/accounts/{id}" : {
 			"post" : {
 				"operationId" : "accountsIdPost"
+				, "summary" : "Update existing account."
+				, "description" : "Description of how to update existing account."
 				, "parameters" : [
 					{
 						"in" : "path"
 						, "name" : "id"
 						, "type" : "integer"
 						, "minimum" : 1
-						, "required" : "true"
+						, "required" : true
 					}
 					, {
 						"in" : "body"
@@ -25,12 +27,61 @@
 						, "schema" : {
 							"$ref" : "#/definitions/Account"
 						}
-						, "required" : "true"
+						, "required" : true
 					}
 				]
+				, "responses" : {
+					"200" : {
+						"description" : "OK"
+						, "schema" : {
+							"$ref" : "#/definitions/Account"
+						}
+					}
+				}
+			}
+			, "put" : {
+				"operationId" : "accountsIdPut"
+				, "summary" : "Create existing account."
+				, "description" : "Description of how to create new account."
+				, "parameters" : [
+					{
+						"in" : "path"
+						, "name" : "id"
+						, "type" : "integer"
+						, "minimum" : 1
+						, "required" : true
+					}
+					, {
+						"in" : "body"
+						, "name" : "account"
+						, "schema" : {
+							"$ref" : "#/definitions/Account"
+						}
+						, "required" : true
+					}
+				]
+				, "responses" : {
+					"200" : {
+						"description" : "OK"
+						, "schema" : {
+							"$ref" : "#/definitions/Account"
+						}
+					}
+				}
 			}
 			, "get" : {
 				"operationId" : "accountsIdGet"
+				, "summary" : "Retrieve existing account by id."
+				, "description" : "Description of how to retrieve existing account by id."
+				, "parameters" : [
+					{
+						"in" : "path"
+						, "name" : "id"
+						, "type" : "integer"
+						, "minimum" : 1
+						, "required" : true
+					}
+				]
 				, "responses" : {
 					"200" : {
 						"description" : "OK"
@@ -44,6 +95,8 @@
 		, "/accounts" : {
 			"get" : {
 				"operationId" : "accountsGet"
+				, "summary" : "Retrieve existing accounts."
+				, "description" : "Description of how to retrieve existing accounts."
 				, "responses" : {
 					"200" : {
 						"description" : "OK"
@@ -56,6 +109,7 @@
 		"Account" : {
 			"type" : "object"
 			, "name" : "Account"
+			, "description" : "Account model object"
 			, "properties" : {
 				"title" : { 
 					"type" : "string"
