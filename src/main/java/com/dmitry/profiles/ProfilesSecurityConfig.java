@@ -33,10 +33,13 @@ public class ProfilesSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
 	{
+		auth.authenticationProvider(new ProfilesAuthenticationProvider());
+/*
 		auth.inMemoryAuthentication()
 			.withUser("user").password("{noop}user").roles("USER")
 			.and()
 			.withUser("spadmin").password("{noop}admin").roles("ADMIN");
+*/
 	}
 
 	/* (non-Javadoc)
@@ -45,20 +48,13 @@ public class ProfilesSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception
 	{
-		http.authorizeRequests()
-		.antMatchers("/login*").permitAll()
+		http
+		.authorizeRequests()
+			.antMatchers("/swagger*").permitAll()
 			.anyRequest().authenticated()
 
 		.and()
-		.formLogin()
-//			.permitAll()
-			.loginProcessingUrl("/")
-			.successHandler(new ProfilesAuthenticationSuccessHandler())
-
-//		.and()
-//		.logout()
-  //          .permitAll()
-			;
+		.httpBasic();
     }
 
 }

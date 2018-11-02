@@ -8,9 +8,10 @@ curl -v $baseurl/appTableEntities
 
 curl -v -H 'Content-Type: application/json' -d '{ "id": 100, "name": "NAME100", "description": "DESCRIPTION100" }' $baseurl/appTableEntities
 
-curl -v $baseurl
+curl -v -d 'username=spadmin&password=admin' $baseurl/
 
-curl -v $baseurl
+curl -v $baseurl/
+curl -v $baseurl/login
 
 mvn help:active-profiles -P <profilename>
 
